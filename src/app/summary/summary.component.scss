@@ -1,29 +1,226 @@
-// // .es para classes
-// .summary-container {
-//     text-align: center;
+
+// * {box-sizing: border-box }
+// .page-wrapper {
 //     width: 100%;
+//     min-width: 0;
+//     display: flex;
+//     justify-content: center;
+// }
+// .page-container {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     max-width: 414px;
+//     width: 100%;
+//     min-width: 0;
+// }
+// .title {
+//         font-size: 28px;
+//     width: 100%;
+//     text-align: center;
+//     margin: 5px;
+// }
+// .periodo {
+//     font-size: 14px;
+//     width: 100%;
+//     text-align: center;
+//     padding: 5px 0 10px 0;
+//     color: rgb(135, 134, 134);
+//     margin: 5px;
+// }
+// .data-container {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: center;
+//     max-width: 414px;
+// }
+// .data {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-start;
+//     align-content: center;
+//     flex: 0 1 auto;
+//     border: 1px solid #f1f5f8;
+//     width: 50%;
+//     background: #fff;
+// }
+// .data-title {
+//     font-size: 18px;
+//     font-weight: 500;
+//     text-align: start;
+//     padding: 20px 10px 0 20px;
+//     color: rgb(83, 82, 82);
+//     min-height: 75px;
 //     position: relative;
 // }
-// //sin punto es para tags (elemnts)
+// .--not-used-anymore {
+//     .data-title::before, .data-title::after {
+//         position: absolute;
+//         left: 50%;
+//         opacity: 0;
+//         transition: all 0.3s;
+//     }
+//     .data-title::before {
+//         content: '';
+//         border-width: 10px 8px 0 0px;
+//         border-style: solid;
+//         border-color: rgba(0,0,0,0.3) transparent transparent transparent;
+//         margin-left: -30px;
+//         top: 10px;
+//         z-index: 1;
+//     }
+//     .data-title::after {
+//         content: attr(data-tooltip);
+//         background-color: rgba(0,0,0,0.3);
+//         top: 10px;
+//         font-size: 10px;
+//         width: 120px;
+//         margin-left: -50px;
+//         padding: 5px;
+//         border-radius: 5px;
+//         color: #eee;
+//         transform: translateY(-100%);
+//         text-align: center;
+//     }
+//     .data-title:hover::before, .data-title:hover::after {
+//         opacity: 1;
+//     }
+// }
 
-// h1{
-//     width: 100%;
-//     text-align: left;
-//     margin-left: 25px;
-//     color: rgb(136, 158, 155)
+// .data-sign {
+//     font-size: 20px;
+//     line-height: 40px;
+//     font-weight: 400;
+//     text-align: right;  
+//     padding: 0 10px 20px 0;
 // }
-// .title{
-//     padding-bottom: 50px;
-//     border: 1px solid black;
+// .data-value {
+//     font-size: 32px;
+//     line-height: 36px;
+//     font-weight: 400;
+//     text-align: right;  
+//     padding: 0 20px 20px 0;
 // }
-// h2{
-//     text-align: left;
-//     margin-left: 30px;
-//     color: rgb(182, 210, 211)
+// .signo-pesos::before {
+//     content: '$';
+//     margin-right: 5px;
+//     font-size: 20px;
+//     font-weight: 400;
 // }
-// h3{
-//     color: rgb(82, 153, 100)
-// }    
+
+// $slider-width: 414px;
+// $slider-bg-color: #f1f5f8;
+
+
+// /* CUSTOM CSS STYLES FOR THE PEN AND THE SLIDER */
+// .slider {
+//   position: relative; // so we can position our navigation elements
+//   width: $slider-width; // set width to what we want on our custom styles and not in the prerequisite styles
+//   margin: 0 auto 20px; // quickly center the slider in the pen
+//   border: 1px solid #f1f5f8;
+// }
+
+// .frame {
+//   //background-color: #2E435A; // so we can see background color
+//   width: $slider-width; // set width smaller than slider
+//   //height: 125px; // set the height to something...
+//   margin: 0 auto; // center inside slider
+//   overflow: hidden;
+//   white-space: nowrap;
+// }
+
+// .slides {
+//   text-align: center; // center the text content of the example
+//   display: inline-block;
+//   .js_slide {
+//     //color: #fff; // color white so we can see it on the BG color
+//     color: #000; // color white so we can see it on the BG color
+//     width: $slider-width; // set to the same width as our frame
+//     //height: 125px; // set to the same height as our frame
+//     font-size: 16px; // cause lory needs to set font size 0 on the frame 
+//     //line-height: 125px; // centers vertically because it's the same as the height 
+//     position: relative;
+//     display: inline-block;
+//   }
+// }
+
+// .slider-data {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     flex-direction: column;
+//     background: lighten($slider-bg-color,3);
+//     min-width: 0;
+// }
+
+// .slider-title {
+//     background: darken($slider-bg-color,2);
+// }
+
+// // ARROW NAVIGATION
+// .js_prev, .js_next {
+//   position: absolute; // set absolute to fall to the nearest relative parent
+//   top: 50%; // set top 50% for arrows, then offset for their height
+//   //margin-top: -10px; // offset for the height of the arrows
+//   display: block; // block...
+//   cursor: pointer; // cursor pointer for UX feedback
+//   border: 1px solid darken(#f1f5f8,10);
+//   background: #fff;
+//   height: 45px;
+//   width: 45px;
+//   border-radius: 50%;
+//   padding: 10px;
+// }
+
+// .js_prev {left: 30px;} // using default class names lory expects
+// .js_next {right: 30px;} // using default class names lory expects
+
+
+// // DOT NAVIGATION
+// .slider_navigation_dots {
+//   margin: 0; // remove default browser style
+//   padding: 0; // remove default browser style
+//   text-align: center; // center the dots
+//   margin-top: 10px; // add some space on top
+//   position: absolute; // absolute relative to parent
+//   width: 100%; // full width of the slider
+  
+//   li {
+//     background-color: #eee; // grey the BG
+//     border: 1px solid #666; // border with box shadow... oooooh aaaaaah
+//     border-radius: 5px; // round them cause... dots
+//     box-shadow: inset 1px 1px 1px #888; // make them pretty
+//     display: inline-block; // inline cause row
+//     height: 10px; // set the height of the dots
+//     width: 10px; // set the width of the dots
+//     margin: 0 5px; // space the dots
+//     cursor: pointer; // cursor pointer for UX feedback
+//   }
+//   li.active {
+//     background-color: #41ABE5; // MAKE IT BLUE CAUSE ACTIVE!
+//     box-shadow: inset 2px 0px 2px -2px #333; // Change the boxshadow inset... just cause
+//   }
+  
+// }
+
+
+
+
+
+// @media screen and (max-width: 374px) {
+//     .data-title {
+//         font-size: 18px;
+//         padding: 20px 0 0 0;
+//         text-align: center;
+//     }
+//     .data-value {
+//         font-size: 24px;
+//         padding: 0 0 10px 0;
+//         text-align: center;
+//     }
+// }
 
 * {box-sizing: border-box }
 .page-wrapper {
@@ -163,7 +360,10 @@ $slider-bg-color: #f1f5f8;
   .js_slide {
     //color: #fff; // color white so we can see it on the BG color
     color: #000; // color white so we can see it on the BG color
-    width: $slider-width; // set to the same width as our frame
+    // width: calc( $slider-width / 2 ); // set to the same width as our frame
+    width: 207px; // set to the same width as our frame
+
+
     //height: 125px; // set to the same height as our frame
     font-size: 16px; // cause lory needs to set font size 0 on the frame 
     //line-height: 125px; // centers vertically because it's the same as the height 
@@ -183,20 +383,22 @@ $slider-bg-color: #f1f5f8;
 
 .slider-title {
     background: darken($slider-bg-color,2);
+    
+}
+
+.in-slider {
+    width: 100% !important;
 }
 
 // ARROW NAVIGATION
 .js_prev, .js_next {
   position: absolute; // set absolute to fall to the nearest relative parent
-  top: 50%; // set top 50% for arrows, then offset for their height
-  //margin-top: -10px; // offset for the height of the arrows
+  top: 48%; // set top 50% for arrows, then offset for their height
   display: block; // block...
   cursor: pointer; // cursor pointer for UX feedback
-  border: 1px solid darken(#f1f5f8,10);
   background: #fff;
-  height: 45px;
-  width: 45px;
-  border-radius: 50%;
+  height: 35px;
+  width: 35px;
   padding: 10px;
 }
 

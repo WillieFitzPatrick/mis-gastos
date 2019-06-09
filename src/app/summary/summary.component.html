@@ -1,17 +1,4 @@
-
-<div class="page-wrapper" *ngIf="summary">
-    <div class="page-container">
-        <h1 class="title">Resumen</h1>
-        <h5 class="periodo">27/02/2019 - 02/06/2019</h5>
-        <div class="data-container">
-            <div class="data">
-                <div class="data-title" i-tooltip i-tooltip-key="ingresos-periodo">Ingreso Periodo</div>
-                <div class="data-value signo-pesos">{{summary.incomes}}</div>
-            </div>
-
-
-
-            <!-- budget: 2000
+<!-- budget: 2000
             daily_budget: 285.71
             daily_expenses: 0
             expenses: 0
@@ -23,18 +10,25 @@
             savings: 1680 -->
 
 
-
-
+<div class="page-wrapper" *ngIf="summary">
+    <div class="page-container" >
+        <h1 class="title">Resumen</h1>
+        <h5 class="periodo">{{summary?.inicio | date: 'dd/MM/yyyy'}} - {{summary?.fin | date: 'dd/MM/yyyy'}}</h5>
+        <div class="data-container">
+            <div class="data">
+                <div class="data-title" i-tooltip i-tooltip-key="ingresos-periodo">Ingreso Periodo</div>
+                <div class="data-value signo-pesos">{{summary?.incomes  | number}}</div>
+            </div>
             <div class="data">
                 <div class="data-title" i-tooltip i-tooltip-key="ingresos-diarios">Presupuesto Diario</div>
-                <div class="data-value signo-pesos">{{summary.daily_budget}}</div>
+                <div class="data-value signo-pesos">{{summary?.daily_budget  | number}}</div>
             </div>
         </div>
 
         <div class="data-container">
             <div class="data">
                 <div class="data-title" i-tooltip i-tooltip-key="gastos-periodo">Egreso Periodo</div>
-                <div class="data-value signo-pesos">{{summary.expenses}}</div>
+                <div class="data-value signo-pesos">{{summary?.expenses}}</div>
             </div>
             <div class="data">
                 <div class="data-title">Egreso Diario Promedio</div>
@@ -45,57 +39,56 @@
         <div class="data-container">
             <div class="data">
                 <div class="data-title">Ahorro del Periodo</div>
-                <div class="data-value signo-pesos">{{summary.incomes-summary.expenses}}</div>
+                <div class="data-value signo-pesos">{{summary?.incomes-summary?.expenses  | number }}</div>
             </div>
             <div class="data">
                 <div class="data-title">Ahorro Total</div>
-                <div class="data-value signo-pesos">{{summary.savings}}</div>
+                <div class="data-value signo-pesos">{{summary?.savings}}</div>
             </div>
         </div>
 
-        <ng-container *ngIf="true">
-            <div class="data-container" style="margin-top: 15px;">
-                <div #jsSlider class="slider js_slider">
-                    <div class="frame js_frame">
-                        <ul class="slides js_slides">
-                            <li class="js_slide" *ngFor="let dia of dias; let idx = index;">
-                                <div class="slider-data">
-                                    <div class="data slider-title">
-                                        Dia : {{dia.dia}}
-                                    </div>
-                                    <div class="data">
-                                        <div class="data-title">Egresos</div>
-                                        <div class="data-value signo-pesos">235</div>
-                                    </div>
-                                    <div class="data">
-                                        <div class="data-title">Ahorro</div>
-                                        <div class="data-value signo-pesos">50</div>
-                                    </div>
+        <div class="data-container"  *ngIf="dias" style="margin-top: 15px;">
+            <div #slider class="slider js_slider">
+                <div class="frame js_frame">
+                    <ul class="slides js_slides">
+                        <li class="slide js_slide" *ngFor="let dia of dias; let idx = index;">
+                            <div class="slider-data">
+                                <div class="data slider-title in-slider">
+                                    {{dia.date | date: 'dd/MM/yyyy'}} {{idx + '/' + dias.length}}
                                 </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <span class="js_prev">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
-                            <g>
-                                <path
-                                    d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z" />
-                            </g>
-                        </svg>
-                    </span>
-                    <span class="js_next">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
-                            <g>
-                                <path
-                                    d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" />
-                            </g>
-                        </svg>
-                    </span>
-                    <!-- <ul class="slider_navigation_dots"></ul> -->
+                                <div class="data  in-slider">
+                                    <div class="data-title  in-slider">Egresos</div>
+                                    <div class="data-value signo-pesos  in-slider">{{dia.expense  | number}}</div>
+                                </div>
+                                <div class="data  in-slider">
+                                    <div class="data-title  in-slider">Ahorro</div>
+                                    <div class="data-value signo-pesos  in-slider">
+                                        {{summary?.daily_budget - dia.expense | number}}</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
+                <span #prev class="js_prev prev">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
+                        <g>
+                            <path
+                                d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z" />
+                        </g>
+                    </svg>
+                </span>
+                <span #next class="js_next next">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
+                        <g>
+                            <path
+                                d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" />
+                        </g>
+                    </svg>
+                </span>
+                <!-- <ul class="slider_navigation_dots"></ul> -->
             </div>
-        </ng-container>
+        </div>
     </div>
 </div>

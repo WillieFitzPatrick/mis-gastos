@@ -23,7 +23,7 @@ export class DataService {
   }
   getSummary() {
 
-    return this.http.get<ISummary[]>(URL + 'summary');
+    return this.http.get<ISummary>(URL + 'summary');
   }
   saveExpense( expense: IExpense) {
     return this.http.post(URL + 'expenses', 

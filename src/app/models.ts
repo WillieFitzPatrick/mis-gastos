@@ -1,3 +1,5 @@
+import { ExpenseComponent } from './expense/expense.component';
+
 export interface ICategory {
     Id: number,
     descrip: string,
@@ -33,4 +35,10 @@ export interface ISummary {
     incomes: number,
     expenses: number,
     daily_expenses: number,
+    SummaryDays: ISummaryDay[]
+}
+
+export interface ISummaryDay {
+    date: Date,
+    expense: number
 }

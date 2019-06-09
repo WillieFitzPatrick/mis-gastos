@@ -43,7 +43,6 @@ export class ITooltipService {
 
   getTooltipText( _key: string ): string {
       const tt = this.tooltips.find( (e) => { return e.key === _key });
-      console.log( tt )
       return (tt) ? tt.text : "";
   }
   saveRef( ref: any ): any {
