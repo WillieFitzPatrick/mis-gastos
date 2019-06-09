@@ -15,7 +15,7 @@ export class SummaryComponent implements OnInit {
     private prev: ElementRef;
     private next: ElementRef;
     private slideIndex: number = 0;
-    @ViewChild("slider", { static: false }) set sliderElRef(slider: ElementRef) {
+    @ViewChild("slider", { read: ElementRef, static: false }) set sliderElRef(slider: ElementRef) {
         this.slider = slider;
         //setup the slider
         setTimeout( () => {
@@ -30,10 +30,10 @@ export class SummaryComponent implements OnInit {
 
     }
 
-    @ViewChild("prev", { static: false }) set prevElRef(prev: ElementRef) {
+    @ViewChild("prev", { read: ElementRef, static: false }) set prevElRef(prev: ElementRef) {
       this.prev = prev;
     }
-    @ViewChild("next", { static: false }) set nextElRef(next: ElementRef) {
+    @ViewChild("next", { read: ElementRef, static: false }) set nextElRef(next: ElementRef) {
       this.next = next;
     }
 
@@ -62,16 +62,15 @@ export class SummaryComponent implements OnInit {
                     _day.setDate(  (_day.getDate() + i) );
                     _isoDay = _day.toISOString();
                 } catch {
-                    
+                    console.warn("Error seting _date for further retrieve _expense for slider")
                 }
 
                 try {
                     if (_isoDay.substring(0,10) === _isoToday.substring(0,10)) {
-                        this.slideIndex = i;
-                        console.log( this.slideIndex)
+                        this.slideIndex = (i === 6) ? 5 : i;
                     }
                 } catch {
-                    console.log("error")
+                    console.warn("Error seting current index of slider")
                 }
 
                 let _expense = 0;
@@ -85,6 +84,8 @@ export class SummaryComponent implements OnInit {
                         }
                     }
                 } catch {
+                    console.warn("Error geting _expense from SummaryDays for slider")
+
                 }
 
                 this.dias.push( {date: _day , expense: (_expense || 0) })
