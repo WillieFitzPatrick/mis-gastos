@@ -1,0 +1,31 @@
+<div class="btn-container">
+    <h1 class="title">Nuevo gasto</h1>
+    <button mat-fab color="primary" (click)="saveForm()">
+        <mat-icon aria-label="Cerrar">done</mat-icon>
+    </button>
+</div>
+
+<form [formGroup]="xForm" class="expense-form">
+
+    <mat-form-field>
+        <input matInput  formControlName="date" [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="expense-full-width">
+        <input matInput  formControlName="amount" type="number" placeholder="Importe">
+    </mat-form-field>
+
+
+    <mat-form-field>
+        <select matNativeControl  formControlName="category" placeholder="Categoría" >
+            <option value="otro">Otro</option>
+            <option value="comida">Comida</option>
+            <option value="ropa">Ropa</option>
+            <option value="entretenimineto">Entretenimiento</option>
+        </select>
+    </mat-form-field>
+    <mat-form-field class="expense-full-width">
+        <input matInput  formControlName="descrip" placeholder="Descripción" >
+    </mat-form-field>
+</form>

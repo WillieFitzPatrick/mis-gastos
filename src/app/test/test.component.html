@@ -1,0 +1,29 @@
+<div *ngIf="expenses">
+  <div *ngFor="let expense of expenses">
+    <p>{{expense.date}} - {{expense.descrip}} $ {{expense.amount}}</p>
+  </div> 
+
+</div>
+
+
+<form class="expense-form">
+  <mat-form-field class="expense-full-width">
+    <input matInput type="date" placeholder="Fecha" [value]="fecha">
+  </mat-form-field>
+  <mat-form-field class="expense-full-width">
+    <input matInput placeholder="Descripción" [value]="descrip">
+  </mat-form-field>
+  <mat-form-field class="expense-full-width">
+    <input matInput type="number" placeholder="Importe" [value]="importe">
+  </mat-form-field>
+
+<mat-form-field>
+  <select matNativeControl required placeholder="Categoría" [value]="categoria">
+     <option value="otro">Otro</option>
+    <option value="comida">Comida</option>
+    <option value="ropa">Ropa</option>
+    <option value="entretenimineto">Entretenimiento</option>
+  </select>
+</mat-form-field>
+
+</form>

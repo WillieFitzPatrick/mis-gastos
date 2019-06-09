@@ -1,0 +1,25 @@
+
+<div class="btn-container">
+<button mat-fab (click)="addExpense()">
+  <mat-icon aria-label="Agregar un gasto">add</mat-icon>
+</button>
+</div>
+   
+<div *ngIf="expenses">
+    <div *ngFor="let expense of expenses">
+      <p>{{expense.date}} - {{expense.descrip}} $ {{expense.amount}}</p>
+    </div> 
+
+  </div>
+
+
+
+
+  <!-- <mat-form-field [style.fontSize]="fontSize.value">
+    <mat-label>Autosize textarea</mat-label>
+    <textarea matInput
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="2"
+              cdkAutosizeMaxRows="5"></textarea>
+  </mat-form-field> -->

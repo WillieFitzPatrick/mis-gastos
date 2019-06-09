@@ -1,0 +1,19 @@
+<h1>Ingresos</h1>
+<h4>Aqui puedes cargar tus ingresos</h4>
+
+<div class="btn-container">
+    <button mat-fab (click)="addIncome()">
+      <mat-icon aria-label="Agregar un gasto">add</mat-icon>
+    </button>
+    </div>
+       
+    <div *ngIf="incomes">
+        <div *ngFor="let income of incomes">
+          <p>{{income.date}} - {{income.descrip}} $ {{income.amount}} {{income.confirmed ? "confirmado" : "pendiente"}}</p>
+        </div> 
+    
+      </div>
+    
+
+<!-- <button mat-button (click)="addIncome(1)">Ingreso único</button>
+<button mat-button (click)="addIncome(2)">Ingreso fijo</button> -->
