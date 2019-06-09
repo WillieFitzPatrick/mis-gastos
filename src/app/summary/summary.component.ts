@@ -3,7 +3,6 @@ import { DataService } from '../data.service';
 import { ISummary, ISummaryDay } from '../models';
 import { lory, Lory } from 'lory.js';
 import { isMobile } from '../utils';
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
     selector: 'app-summary',
@@ -15,11 +14,12 @@ export class SummaryComponent implements OnInit {
     private slider: ElementRef;
     private prev: ElementRef;
     private next: ElementRef;
+    private slideIndex: number = 0;
     @ViewChild("slider", { static: false }) set sliderElRef(slider: ElementRef) {
         this.slider = slider;
         //setup the slider
         setTimeout( () => {
-            this.lorySlider = lory( this.slider.nativeElement, { infinite: false, slidesToScroll: 2 });
+            this.lorySlider = lory( this.slider.nativeElement, { infinite: false, slidesToScroll: 2, initialIndex: this.slideIndex });
 
             if (isMobile()) {
                 this.r2.setStyle(  this.prev.nativeElement, "display", "none");
@@ -51,22 +51,35 @@ export class SummaryComponent implements OnInit {
     getData() {
         this.ds.getSummary().subscribe((data) => {
             //inicializo los dias
+            let _today = new Date();
+            let _isoToday = _today.toISOString();
             for (let i=0; i<=6;i++) 
             {
-                let _date = new Date(data.inicio);
-                let _isoDate = _date.toISOString();
+                let _day = new Date(data.inicio);
+                let _isoDay = _day.toISOString();
+
                 try {
-                    _date.setDate(  (_date.getDate() + i) );
-                    _isoDate = _date.toISOString();
+                    _day.setDate(  (_day.getDate() + i) );
+                    _isoDay = _day.toISOString();
                 } catch {
                     
                 }
+
+                try {
+                    if (_isoDay.substring(0,10) === _isoToday.substring(0,10)) {
+                        this.slideIndex = i;
+                        console.log( this.slideIndex)
+                    }
+                } catch {
+                    console.log("error")
+                }
+
                 let _expense = 0;
                 try {
 
                     let day;
                     for (day of data.SummaryDays) {
-                        if (day.date.toString().substring(0,10) === _isoDate.substring(0,10)){
+                        if (day.date.toString().substring(0,10) === _isoDay.substring(0,10)){
                             _expense = _expense + day.expense;
                             break;
                         }
@@ -74,7 +87,7 @@ export class SummaryComponent implements OnInit {
                 } catch {
                 }
 
-                this.dias.push( {date: _date , expense: (_expense || 0) })
+                this.dias.push( {date: _day , expense: (_expense || 0) })
             }      
 
             this.summary = data;
