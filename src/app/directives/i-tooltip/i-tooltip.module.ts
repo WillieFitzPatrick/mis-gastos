@@ -23,12 +23,10 @@ export class ITooltipDirective {
     }
 
     ngOnInit() {
-        this.addTooltip();
-    }
-
-    addTooltip() {
+        // Add the tooltip icon to the container element
         const tooltip = this.r2.createElement('span');
         this.r2.addClass(tooltip, 'i-tooltip');
+
         this.r2.listen(tooltip, 'click', (e) => { this.onClick(e) });
         this.r2.appendChild(this.el.nativeElement, tooltip);
         this.tooltipRef = tooltip;
@@ -36,9 +34,19 @@ export class ITooltipDirective {
 
     onClick(e) {
 
-        this.r2.removeChild(this.el.nativeElement, this.tooltipRef)
+        //Close active tooltip if there is one
+        let _vcRef = this.ttService.getRef();
+        if (_vcRef) {
+            _vcRef.clear();
+            _vcRef = null;
+        }
+
+        //Save a vcRef for future closing if new is opened
+        this.ttService.saveRef(this.vcRef);
+
         const factory: ComponentFactory<ITooltipComponent> = this.resolver.resolveComponentFactory(ITooltipComponent);
         this.componentRef = this.vcRef.createComponent(factory);
+
 
         // get the Tooltip Text and pass it to the component
         this.componentRef.instance.text = this.ttService.getTooltipText( this.tooltipKey );
@@ -49,7 +57,7 @@ export class ITooltipDirective {
     onClose() {
         this._closeSbs.unsubscribe();
         this.vcRef.clear();
-        this.addTooltip();
+        this.ttService.delRef();
     }
 }
 
@@ -60,5 +68,4 @@ export class ITooltipDirective {
     exports: [ITooltipDirective]
 })
 export class ITooltipModule { }
-
 
