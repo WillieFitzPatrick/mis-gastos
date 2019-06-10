@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { DateAdapter, NativeDateAdapter } from '@angular/material/core';
 
@@ -26,7 +27,6 @@ import { IncomeComponent } from './income/income.component';
 import { ExpenseComponent } from './expense/expense.component';
 import { TestComponent } from './test/test.component';
 import { ExpenseFormComponent } from './expense/expense.component';
-import { RouterModule } from '@angular/router';
 import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
 
 @NgModule({
@@ -53,6 +53,7 @@ import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
+    MatListModule,
     MatBottomSheetModule,
     AppRoutingModule,
     ITooltipModule

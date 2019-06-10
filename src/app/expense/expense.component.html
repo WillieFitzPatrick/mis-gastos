@@ -1,25 +1,35 @@
+<div class="expenses-wrapper">
+    <div class="btn-container">
+        <button mat-fab (click)="addExpense()">
+            <mat-icon aria-label="Agregar un gasto">add</mat-icon>
+        </button>
+    </div>
 
-<div class="btn-container">
-<button mat-fab (click)="addExpense()">
-  <mat-icon aria-label="Agregar un gasto">add</mat-icon>
-</button>
+    <div class="list-container" *ngIf="expenses">
+        <h1>Gastos</h1>
+        <mat-list>
+            <ng-container *ngFor="let date of getDates()">
+                <mat-list-item>
+                    <mat-icon matListIcon>calendar_today</mat-icon>
+                    <h3><span class="date">{{date | date: 'dd/MM/yyyy'}}</span></h3>
+                </mat-list-item>
+                <mat-list style="margin-left:30px; margin-top: -20px;">
+                    <div *ngFor="let expense of getExpenses(date)">
+                        <mat-list-item>
+                            <h4 matLine>
+                                <div class="list-line-1">
+                                <span>{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}</span>
+                                <span class="amount">$&nbsp;{{expense.amount | number:'0.2-2'}}</span>
+                                </div>
+
+                            </h4>
+                            <p matLine >
+                                <span class="descrip">{{expense.descrip}}</span>  
+                            </p>
+                        </mat-list-item>
+                    </div>
+                </mat-list>
+            </ng-container>    
+        </mat-list>
+    </div>
 </div>
-   
-<div *ngIf="expenses">
-    <div *ngFor="let expense of expenses">
-      <p>{{expense.date}} - {{expense.descrip}} $ {{expense.amount}}</p>
-    </div> 
-
-  </div>
-
-
-
-
-  <!-- <mat-form-field [style.fontSize]="fontSize.value">
-    <mat-label>Autosize textarea</mat-label>
-    <textarea matInput
-              cdkTextareaAutosize
-              #autosize="cdkTextareaAutosize"
-              cdkAutosizeMinRows="2"
-              cdkAutosizeMaxRows="5"></textarea>
-  </mat-form-field> -->

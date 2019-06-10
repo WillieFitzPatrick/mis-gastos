@@ -25,6 +25,25 @@ export class ExpenseComponent implements OnInit {
         });
     }
 
+    getDates() {
+        let _dates = [];
+        this.expenses.forEach( e => {
+            let _date = new Date( e.date );
+            _dates.push( _date.toISOString().substring(0,10) );
+        });
+        return [...new Set(_dates)];
+    }
+    getExpenses( date ) {
+        let _expenses = [];
+        this.expenses.forEach( e => {
+            let _date = new Date( e.date );
+            if ( _date.toISOString().substring(0,10) === date ) {
+                _expenses.push( e );
+            }
+        });
+        return _expenses;        
+    }
+
     addExpense() {
         const ref = this.bottomSheet.open(ExpenseFormComponent);
         ref.afterDismissed().subscribe(() => {
