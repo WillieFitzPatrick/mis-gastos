@@ -52,6 +52,10 @@ export class ExpenseComponent implements OnInit {
 
         )
     }
+
+    swipe( idx, event) {
+        console.log(idx, event);
+    }
 }
 
 @Component({
