@@ -28,6 +28,7 @@ import { IncomeComponent } from './income/income.component';
 import { ExpenseComponent } from './expense/expense.component';
 import { TestComponent } from './test/test.component';
 import { ExpenseFormComponent } from './expense/expense.component';
+import { IncomeFormComponent } from './income/income.component';
 import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
 
 @NgModule({
@@ -39,6 +40,7 @@ import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
     ExpenseComponent,
     TestComponent,
     ExpenseFormComponent,
+    IncomeFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,7 @@ import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
   
   ],
   providers: [{provide: DateAdapter, useClass: NativeDateAdapter}],
-  entryComponents: [ExpenseFormComponent],
+  entryComponents: [ExpenseFormComponent,IncomeFormComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

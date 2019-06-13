@@ -30,6 +30,11 @@ export class DataService {
                           JSON.stringify(expense),
                           { headers: this.headers });
   }
+  saveIncome( income: IIncome) {
+    return this.http.post(URL + 'incomes', 
+                          JSON.stringify(income),
+                          { headers: this.headers });
+  }
 }
 
 //http://misgastos.swapps.com.ar/api/expenses
