@@ -20,7 +20,7 @@
                 <div class="data-value signo-pesos">{{summary?.incomes  | number}}</div>
             </div>
             <div class="data">
-                <div class="data-title" i-tooltip i-tooltip-key="ingresos-diarios">Presupuesto Diario</div>
+                <div class="data-title" i-tooltip i-tooltip-key="ingresos-dayrios">Presupuesto Dayrio</div>
                 <div class="data-value signo-pesos">{{summary?.daily_budget  | number}}</div>
             </div>
         </div>
@@ -31,7 +31,7 @@
                 <div class="data-value signo-pesos">{{summary?.expenses}}</div>
             </div>
             <div class="data">
-                <div class="data-title">Egreso Diario Promedio</div>
+                <div class="data-title">Egreso Dayrio Promedio</div>
                 <div class="data-value signo-pesos">0</div>
             </div>
 
@@ -47,23 +47,23 @@
             </div>
         </div>
 
-        <div class="data-container"  *ngIf="dias" style="margin-top: 15px;">
+        <div class="data-container"  *ngIf="days" style="margin-top: 15px;">
             <div #slider class="slider js_slider">
                 <div class="frame js_frame">
                     <ul class="slides js_slides">
-                        <li class="slide js_slide" *ngFor="let dia of dias; let idx = index;">
+                        <li class="slide js_slide" *ngFor="let day of days; let idx = index;">
                             <div class="slider-data">
                                 <div class="data slider-title in-slider">
-                                    {{dia.date | date: 'dd/MM/yyyy'}} {{idx + '/' + dias.length}}
+                                    {{day.date | date: 'dd/MM/yyyy'}} {{idx + '/' + days.length}}
                                 </div>
                                 <div class="data  in-slider">
                                     <div class="data-title  in-slider">Egresos</div>
-                                    <div class="data-value signo-pesos  in-slider">{{dia.expense  | number}}</div>
+                                    <div class="data-value signo-pesos  in-slider">{{day.expense  | number}}</div>
                                 </div>
                                 <div class="data  in-slider">
                                     <div class="data-title  in-slider">Ahorro</div>
                                     <div class="data-value signo-pesos  in-slider">
-                                        {{summary?.daily_budget - dia.expense | number}}</div>
+                                        {{summary?.daily_budget - day.expense | number}}</div>
                                 </div>
                             </div>
                         </li>
