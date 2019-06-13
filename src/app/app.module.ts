@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DateAdapter, NativeDateAdapter } from '@angular/material/core';
 
 import { AppComponent } from './app.component';
@@ -59,6 +60,7 @@ import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
     MatListModule,
     MatBadgeModule,
     MatBottomSheetModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
     ITooltipModule
   
