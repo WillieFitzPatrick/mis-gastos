@@ -6,11 +6,15 @@
                     <app-summary></app-summary>
                 </ng-template>
             </mat-tab>
-            <mat-tab label="Income">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <p>
+                        <span matBadge="4" matBadgeOverlap="false" matBadgeColor="accent">Income</span>
+                    </p>
+                </ng-template>
                 <ng-template matTabContent>
                     <app-income></app-income>
                 </ng-template>
-
             </mat-tab>
             <mat-tab label="Expenses">
                 <ng-template matTabContent>

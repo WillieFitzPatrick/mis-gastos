@@ -17,6 +17,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { DateAdapter, NativeDateAdapter } from '@angular/material/core';
 
@@ -54,6 +55,7 @@ import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
     MatNativeDateModule,
     MatIconModule,
     MatListModule,
+    MatBadgeModule,
     MatBottomSheetModule,
     AppRoutingModule,
     ITooltipModule
