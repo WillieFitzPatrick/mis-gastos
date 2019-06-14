@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { DataService } from '../data.service';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -14,7 +14,8 @@ export class ExpenseComponent implements OnInit {
     expenses: IExpense[];
 
     constructor(private ds: DataService,
-        private bottomSheet: MatBottomSheet) { }
+                private bottomSheet: MatBottomSheet,
+                private r2: Renderer2) { }
 
     ngOnInit() {
         this.getData();
@@ -53,9 +54,19 @@ export class ExpenseComponent implements OnInit {
         )
     }
 
-    swipe( idx, event) {
-        console.log(idx, event);
+    swipe( exp, eventType, el) {
+        console.log( eventType)
+        console.log( el._element.nativeElement)
+        if ( eventType === "swipeleft") {
+            this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 150px`);
+        } else {
+            this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 0`);
+        }
     }
+    tap( exp, el) {
+        this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 0`);
+    }
+
 }
 
 @Component({

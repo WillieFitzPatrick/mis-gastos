@@ -15,21 +15,27 @@
                 </mat-list-item>
                 <mat-list style="margin-left:30px; margin-top: -20px;">
                     <div *ngFor="let expense of getExpenses(date);">
-                        <mat-list-item (swipeleft)="swipe(expense, $event.type)" (swiperight)="swipe(expense, $event.type)">
-                            <h4 matLine>
-                                <div class="list-line-1">
-                                <span>{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}</span>
-                                <span class="amount">$&nbsp;{{expense.amount | number:'0.2-2'}}</span>
-                                </div>
+                            <!--  -->
+                        <mat-list-item #swipeElement (tap)="tap(expense,swipeElement)" (swipeleft)="swipe(expense, $event.type, swipeElement)" (swiperight)="swipe(expense, $event.type, swipeElement)">
+                            <div class="swipe-line">
+                                <h4 matLine>
+                                    <div class="list-line-1">
+                                        <span>{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}</span>
+                                        <span class="amount">$&nbsp;{{expense.amount | number:'0.2-2'}}</span>
+                                    </div>
+                                </h4>
+                            </div>
+                            <div class="swipe-icons">
 
-                            </h4>
-                            <p matLine >
-                                <span class="descrip">{{expense.descrip}}</span>  
+                            </div>
+
+                            <p matLine>
+                                <span class="descrip">{{expense.descrip}}</span>
                             </p>
                         </mat-list-item>
                     </div>
                 </mat-list>
-            </ng-container>    
+            </ng-container>
         </mat-list>
     </div>
 </div>

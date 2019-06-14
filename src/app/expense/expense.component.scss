@@ -1,3 +1,8 @@
+
+:root {
+  --swipe-button-width: 0;
+}
+
 .expenses-wrapper {
   position: relative;
   padding: 15px 15px;
@@ -41,5 +46,14 @@
 }
 .mat-list-item {
   max-height: 48px;
+}
+.swipe-item {
+  width: 100%;
+  min-width: 100%;
+}
+.swipe-icons {
+  width: var(--swipe-button-width,0);
+  height: 48px;
+  background: red;
 }
   
