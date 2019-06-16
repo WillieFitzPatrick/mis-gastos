@@ -63,7 +63,9 @@ export class ExpenseComponent implements OnInit {
             this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 0`);
         }
     }
-    tap( exp, el) {
+    swOnTap( exp, el) {
+        console.log( "onTap")
+
         this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 0`);
     }
 
