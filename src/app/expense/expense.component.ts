@@ -65,6 +65,7 @@ export class ExpenseComponent implements OnInit {
     }
     swOnTap( exp, el) {
         console.log( "onTap")
+        console.log( el)
 
         this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 0`);
     }
@@ -78,11 +79,9 @@ export class ExpenseComponent implements OnInit {
 
 })
 export class ExpenseFormComponent {
-    // fecha: string;
-    // importe: number;
-    // descrip: string;
-    // categoria: string;
+
     xForm: FormGroup;
+
     constructor(private fb: FormBuilder,
         private ds: DataService,
         private expenseFormRef: MatBottomSheetRef<ExpenseFormComponent>) { }
@@ -90,6 +89,7 @@ export class ExpenseFormComponent {
     ngOnInit() {
         this.createForm()
     }
+
     createForm() {
         let tmpDate = new Date();
         let hoy = tmpDate.getDate() + "/" + tmpDate.getMonth() + "/" + tmpDate.getFullYear();
@@ -102,11 +102,6 @@ export class ExpenseFormComponent {
         });
 
     }
-    // saveForm(event: MouseEvent): void {
-    //   this.expenseFormRef.dismiss();
-    //   event.preventDefault();
-    // }
-
 
     saveForm() {
         if (this.xForm.get("amount").value && this.xForm.get("amount").value !== 0) {
@@ -127,3 +122,35 @@ export class ExpenseFormComponent {
     }
 
 }
+
+
+
+// <!-- <mat-list>
+// <ng-container *ngFor="let date of getDates()">
+//     <mat-list-item>
+//         <mat-icon matListIcon>calendar_today</mat-icon>
+//         <h3><span class="date">{{date | date: 'dd/MM/yyyy'}}</span></h3>
+//     </mat-list-item>
+//     <mat-list style="margin-left:30px; margin-top: -20px;">
+//         <div *ngFor="let expense of getExpenses(date);">
+//             <!--  -->
+//             <mat-list-item #swipeElement (tap)="tap(expense,swipeElement)"
+//                 (swipeleft)="swipe(expense, $event.type, swipeElement)"
+//                 (swiperight)="swipe(expense, $event.type, swipeElement)">
+//                 <div class="swipe-line">
+//                     <h4 matLine>
+
+//                     </h4>
+//                 </div>
+//                 <div class="swipe-icons">
+
+//                 </div>
+
+//                 <p matLine>
+//                     <span class="descrip">{{expense.descrip}}</span>
+//                 </p>
+//             </mat-list-item>
+//         </div>
+//     </mat-list>
+// </ng-container>
+// </mat-list> -->

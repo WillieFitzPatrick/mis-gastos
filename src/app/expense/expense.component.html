@@ -1,41 +1,36 @@
 <div class="expenses-wrapper">
     <div class="btn-container">
-        <button mat-fab (click)="addExpense()">
+        <button mat-mini-fab (click)="addExpense()">
             <mat-icon aria-label="Agregar un gasto">add</mat-icon>
         </button>
     </div>
 
     <div class="list-container" *ngIf="expenses">
         <h1>Gastos Cecilia</h1>
-        <mat-list>
-            <ng-container *ngFor="let date of getDates()">
-                <mat-list-item>
-                    <mat-icon matListIcon>calendar_today</mat-icon>
-                    <h3><span class="date">{{date | date: 'dd/MM/yyyy'}}</span></h3>
-                </mat-list-item>
-                <mat-list style="margin-left:30px; margin-top: -20px;">
-                    <div *ngFor="let expense of getExpenses(date);">
-                            <!--  -->
-                        <mat-list-item #swipeElement (tap)="tap(expense,swipeElement)" (swipeleft)="swipe(expense, $event.type, swipeElement)" (swiperight)="swipe(expense, $event.type, swipeElement)">
-                            <div class="swipe-line">
-                                <h4 matLine>
-                                    <div class="list-line-1">
-                                        <span>{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}</span>
-                                        <span class="amount">$&nbsp;{{expense.amount | number:'0.2-2'}}</span>
-                                    </div>
-                                </h4>
-                            </div>
-                            <div class="swipe-icons">
 
-                            </div>
+        <div class="date-container" *ngFor="let date of getDates()">
+            <div class="date-line">
+                <!-- <mat-icon matListIcon>calendar_today</mat-icon> -->
+                <div class="date-separator"></div>
+                <div class="date">{{date | date: 'dd/MM/yyyy'}}</div>
+            </div>
+            <div class="lines-container">
+                <div #swipeElement *ngFor="let expense of getExpenses(date);"
+                     class="line-container"
+                     (tap)="swOnTap(expense,swipeElement)"
+                     (swipeleft)="swipe(expense, $event.type, swipeElement)"
+                     (swiperight)="swipe(expense, $event.type, swipeElement)">
 
-                            <p matLine>
-                                <span class="descrip">{{expense.descrip}}</span>
-                            </p>
-                        </mat-list-item>
+                    <div class="line">
+
+                        <span>{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}</span>
+                        <span class="amount">$&nbsp;{{expense.amount | number:'0.2-2'}}</span>
                     </div>
-                </mat-list>
-            </ng-container>
-        </mat-list>
+                    <p>
+                        <span class="descrip">{{expense.descrip}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

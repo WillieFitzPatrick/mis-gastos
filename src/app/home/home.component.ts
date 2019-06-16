@@ -65,7 +65,6 @@ export class HomeComponent implements OnInit {
         }      
 
         this.summary = data;
-        console.log( "summary is ready")
     });
 }
 }
