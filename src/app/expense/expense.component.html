@@ -6,13 +6,13 @@
     </div>
 
     <div class="list-container" *ngIf="expenses">
-        <h1>Gastos Cecilia</h1>
+        <h1>Gastos</h1>
 
         <div class="date-container" *ngFor="let date of getDates()">
             <div class="date-line">
                 <!-- <mat-icon matListIcon>calendar_today</mat-icon> -->
-                <div class="date-separator"></div>
                 <div class="date">{{date | date: 'dd/MM/yyyy'}}</div>
+                <div class="date-separator"></div>
             </div>
             <div class="lines-container">
                 <div #swipeElement *ngFor="let expense of getExpenses(date);"
@@ -23,11 +23,12 @@
 
                     <div class="line">
 
-                        <span>{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}</span>
+                        <span class="category">{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}</span>
+                        <span class="descrip">{{expense.descrip}}</span>
                         <span class="amount">$&nbsp;{{expense.amount | number:'0.2-2'}}</span>
                     </div>
                     <p>
-                        <span class="descrip">{{expense.descrip}}</span>
+                       
                     </p>
                 </div>
             </div>

@@ -1,31 +1,42 @@
 <div class="btn-container">
     <h1 class="title">Nuevo gasto</h1>
-    <button mat-fab color="primary" (click)="saveForm()">
-        <mat-icon aria-label="Cerrar">done</mat-icon>
-    </button>
+    <div class="buttons">
+        <button mat-mini-fab class="ok-fab" (click)="saveForm()">
+            <mat-icon aria-label="Grabar">done</mat-icon>
+        </button>
+        <button mat-mini-fab class="cancel-fab" (click)="closeForm()">
+            <mat-icon aria-label="Cerrar">close</mat-icon>
+        </button>
+    </div>
 </div>
 
 <form [formGroup]="xForm" class="expense-form">
-
+    <!-- Fecha -->
     <mat-form-field>
-        <input matInput  formControlName="date" [matDatepicker]="picker" placeholder="Choose a date">
+        <input matInput formControlName="date" [matDatepicker]="picker" placeholder="Fecha">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+
+    <!-- Importe -->
     <mat-form-field class="expense-full-width">
-        <input matInput  formControlName="amount" type="number" placeholder="Importe">
+        <input matInput formControlName="amount" type="number" placeholder="Importe">
     </mat-form-field>
 
-
+    <!-- Categoria -->
     <mat-form-field>
-        <select matNativeControl  formControlName="category" placeholder="Categoría" >
-            <option value="otro">Otro</option>
-            <option value="comida">Comida</option>
-            <option value="ropa">Ropa</option>
-            <option value="entretenimineto">Entretenimiento</option>
-        </select>
+        <mat-select  formControlName="category" placeholder="Categoría">
+            <mat-option value="1">Comida</mat-option>
+            <mat-option value="2">Limpieza</mat-option>
+            <mat-option value="3">Cuidado Personal</mat-option>
+            <mat-option value="4">Entretenimiento</mat-option>
+            <mat-option value="5">Ropa</mat-option>
+            <mat-option value="6">Otros</mat-option>
+        </mat-select>
     </mat-form-field>
+
+    <!-- Decripcion -->
     <mat-form-field class="expense-full-width">
-        <input matInput  formControlName="descrip" placeholder="Descripción" >
+        <input matInput formControlName="descrip" placeholder="Descripción">
     </mat-form-field>
 </form>

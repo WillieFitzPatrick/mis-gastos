@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { DataService } from '../data.service';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { IExpense } from '../models';
+import { IExpense, ICategory } from '../models';
 
 @Component({
     selector: 'app-expense',
@@ -92,11 +92,11 @@ export class ExpenseFormComponent {
 
     createForm() {
         let tmpDate = new Date();
-        let hoy = tmpDate.getDate() + "/" + tmpDate.getMonth() + "/" + tmpDate.getFullYear();
 
+        let hoy = tmpDate.toISOString().substring(0,10);
         this.xForm = this.fb.group({
             date: [hoy],
-            amount: [0],
+            amount: [],
             descrip: [''],
             category: ['']
         });
@@ -105,12 +105,17 @@ export class ExpenseFormComponent {
 
     saveForm() {
         if (this.xForm.get("amount").value && this.xForm.get("amount").value !== 0) {
+            let _category: ICategory = {
+                Id: parseInt(this.xForm.get("category").value,10), 
+                descrip: '', 
+                active: true 
+            }
             let formData: IExpense = {
                 id: 0,
                 date: new Date(), //this.xForm.get("date").value,
                 amount: this.xForm.get("amount").value,
                 descrip: this.xForm.get("descrip").value,
-                category: { Id: 0, descrip: '', active: true },
+                category: _category,
                 active: true
             }
 
@@ -120,37 +125,9 @@ export class ExpenseFormComponent {
             });
         }
     }
+    closeForm() {
+        this.expenseFormRef.dismiss();
+    }
 
 }
 
-
-
-// <!-- <mat-list>
-// <ng-container *ngFor="let date of getDates()">
-//     <mat-list-item>
-//         <mat-icon matListIcon>calendar_today</mat-icon>
-//         <h3><span class="date">{{date | date: 'dd/MM/yyyy'}}</span></h3>
-//     </mat-list-item>
-//     <mat-list style="margin-left:30px; margin-top: -20px;">
-//         <div *ngFor="let expense of getExpenses(date);">
-//             <!--  -->
-//             <mat-list-item #swipeElement (tap)="tap(expense,swipeElement)"
-//                 (swipeleft)="swipe(expense, $event.type, swipeElement)"
-//                 (swiperight)="swipe(expense, $event.type, swipeElement)">
-//                 <div class="swipe-line">
-//                     <h4 matLine>
-
-//                     </h4>
-//                 </div>
-//                 <div class="swipe-icons">
-
-//                 </div>
-
-//                 <p matLine>
-//                     <span class="descrip">{{expense.descrip}}</span>
-//                 </p>
-//             </mat-list-item>
-//         </div>
-//     </mat-list>
-// </ng-container>
-// </mat-list> -->

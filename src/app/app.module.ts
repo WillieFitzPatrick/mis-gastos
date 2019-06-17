@@ -16,7 +16,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -57,7 +56,6 @@ import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
-    MatListModule,
     MatBadgeModule,
     MatBottomSheetModule,
     MatProgressSpinnerModule,
