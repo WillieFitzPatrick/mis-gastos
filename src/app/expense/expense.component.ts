@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { DataService } from '../data.service';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -12,6 +12,7 @@ import { IExpense, ICategory } from '../models';
 export class ExpenseComponent implements OnInit {
 
     expenses: IExpense[];
+    tappedExpense: IExpense = null;
 
     constructor(private ds: DataService,
                 private bottomSheet: MatBottomSheet,
@@ -54,21 +55,24 @@ export class ExpenseComponent implements OnInit {
         )
     }
 
-    swipe( exp, eventType, el) {
-        console.log( eventType)
-        console.log( el._element.nativeElement)
-        if ( eventType === "swipeleft") {
-            this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 150px`);
-        } else {
-            this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 0`);
-        }
+    swOnTap( expense ) {
+            // console.log( this.el)
+            // console.log( this.el.nativeElement)
+            console.log( "swOnTap")
+            console.log( expense)
+            this.tappedExpense = (!this.tappedExpense) ? expense : null;
+            //this.r2.setAttribute( this.el.nativeElement, "style", `--swipe-button-width: 150px`);
     }
-    swOnTap( exp, el) {
-        console.log( "onTap")
-        console.log( el)
 
-        this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 0`);
-    }
+    swipe( exp, eventType, el) {
+        // console.log( eventType)
+        // console.log( el._element.nativeElement)
+        // if ( eventType === "swipeleft") {
+        //     this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 150px`);
+        // } else {
+        //     this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 0`);
+        // }
+    }        
 
 }
 
@@ -131,3 +135,59 @@ export class ExpenseFormComponent {
 
 }
 
+@Component({
+    selector: 'expense-line',
+    template: `
+    <div                             
+        (tap)="swOnTap(expense)"
+        (swipeleft)="swipe(expense, $event.type, swipeElement)"
+        (swiperight)="swipe(expense, $event.type, swipeElement)">
+
+        <ng-content></ng-content>
+
+        </div>`,
+    styles: [
+        `
+        :root {
+            --swipe-button-width: 2px;
+          }
+          host:.swipe-icons {
+            //width: var(--swipe-button-width);
+            width: 5px;
+            height: 20px;
+             background: red;
+           }
+
+        `
+    ]
+
+})
+export class ExpenseLineComponent {
+
+    constructor( private el: ElementRef,
+                 private r2: Renderer2 ) { }
+
+    ngOnInit() {
+        // console.log( this.el )
+        // console.log( this.el.nativeElement )
+    }
+    swipe( exp, eventType, el) {
+        // console.log( eventType)
+        // console.log( el._element.nativeElement)
+        // if ( eventType === "swipeleft") {
+        //     this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 150px`);
+        // } else {
+        //     this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 0`);
+        // }
+    }
+
+    //swOnTap( exp, el) {
+    swOnTap( expense: IExpense ) {
+        // console.log( this.el)
+        // console.log( this.el.nativeElement)
+        console.log( "swOnTap")
+        console.log( "expense")
+
+        this.r2.setAttribute( this.el.nativeElement, "style", `--swipe-button-width: 150px`);
+    }
+}

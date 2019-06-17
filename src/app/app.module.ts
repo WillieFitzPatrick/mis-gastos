@@ -25,9 +25,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SummaryComponent } from './summary/summary.component';
 import { IncomeComponent } from './income/income.component';
-import { ExpenseComponent } from './expense/expense.component';
 import { TestComponent } from './test/test.component';
-import { ExpenseFormComponent } from './expense/expense.component';
+import { ExpenseComponent, ExpenseFormComponent , ExpenseLineComponent} from './expense/expense.component';
 import { IncomeFormComponent } from './income/income.component';
 import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
 
@@ -38,8 +37,9 @@ import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
     SummaryComponent,
     IncomeComponent,
     ExpenseComponent,
-    TestComponent,
     ExpenseFormComponent,
+    ExpenseLineComponent,
+    TestComponent,
     IncomeFormComponent,
   ],
   imports: [
@@ -64,7 +64,7 @@ import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
   
   ],
   providers: [{provide: DateAdapter, useClass: NativeDateAdapter}],
-  entryComponents: [ExpenseFormComponent,IncomeFormComponent],
+  entryComponents: [ExpenseFormComponent, ExpenseLineComponent, IncomeFormComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

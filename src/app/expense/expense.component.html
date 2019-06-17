@@ -7,30 +7,42 @@
 
     <div class="list-container" *ngIf="expenses">
         <h1>Gastos</h1>
-
         <div class="date-container" *ngFor="let date of getDates()">
             <div class="date-line">
-                <!-- <mat-icon matListIcon>calendar_today</mat-icon> -->
                 <div class="date">{{date | date: 'dd/MM/yyyy'}}</div>
                 <div class="date-separator"></div>
             </div>
             <div class="lines-container">
-                <div #swipeElement *ngFor="let expense of getExpenses(date);"
-                     class="line-container"
-                     (tap)="swOnTap(expense,swipeElement)"
-                     (swipeleft)="swipe(expense, $event.type, swipeElement)"
-                     (swiperight)="swipe(expense, $event.type, swipeElement)">
+                    <div  *ngFor="let expense of getExpenses(date);"
+                        class="line-container"
+                        (tap)="swOnTap(expense)"
+                        (swipeleft)="swipe(expense, $event.type)"
+                        (swiperight)="swipe(expense, $event.type)">
 
-                    <div class="line">
+                        <!-- <div class="line" #swipeElement>
+                            <span class="category">{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}</span>
+                            <span class="descrip">{{expense.descrip}}</span>
+                            <span class="amount">$&nbsp;{{expense.amount | number:'0.2-2'}}</span>
+                        </div> -->
+                        <div class="line" [style.margin-left.px]="(expense === tappedExpense) ? '-50' : '0'">
+                            <span class="category">{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}</span>
+                            <span class="descrip">{{expense.descrip}}</span>
+                            <span class="amount">$&nbsp;{{expense.amount | number:'0.2-2'}}</span>
+                        </div>
+                        <div class="swipe-icons" *ngIf="expense === tappedExpense"></div>
 
-                        <span class="category">{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}</span>
-                        <span class="descrip">{{expense.descrip}}</span>
-                        <span class="amount">$&nbsp;{{expense.amount | number:'0.2-2'}}</span>
                     </div>
-                    <p>
-                       
-                    </p>
-                </div>
+                    <!-- <expense-line  *ngFor="let expense of getExpenses(date);">
+                        <div class="line-container">
+                            <div class="line" #swipeElement>
+                                <span class="category">{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}</span>
+                                <span class="descrip">{{expense.descrip}}</span>
+                                <span class="amount">$&nbsp;{{expense.amount | number:'0.2-2'}}</span>
+                            </div>
+                            <div class="swipe-icons"></div>
+                        </div>
+                    </expense-line> -->
+
             </div>
         </div>
     </div>

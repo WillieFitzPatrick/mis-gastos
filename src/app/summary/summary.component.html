@@ -1,19 +1,8 @@
-<!-- budget: 2000
-            daily_budget: 285.71
-            daily_expenses: 0
-            expenses: 0
-            fin: "2019-06-09T00:00:00"
-            frec: "W"
-            incomes: 0
-            incomes_nc: 2
-            inicio: "2019-06-03T00:00:00"
-            savings: 1680 -->
-
-
 <div class="page-wrapper" *ngIf="summary">
     <div class="page-container" >
         <h1 class="title">Resumen</h1>
         <h5 class="periodo">{{summary?.inicio | date: 'dd/MM/yyyy'}} - {{summary?.fin | date: 'dd/MM/yyyy'}}</h5>
+        
         <div class="data-container">
             <div class="data">
                 <div class="data-title" i-tooltip i-tooltip-key="ingresos-periodo">Ingreso Periodo</div>
@@ -34,8 +23,8 @@
                 <div class="data-title">Egreso Diario Promedio</div>
                 <div class="data-value signo-pesos">0</div>
             </div>
-
         </div>
+        
         <div class="data-container">
             <div class="data">
                 <div class="data-title">Ahorro del Periodo</div>
@@ -87,7 +76,6 @@
                         </g>
                     </svg>
                 </span>
-                <!-- <ul class="slider_navigation_dots"></ul> -->
             </div>
         </div>
     </div>
