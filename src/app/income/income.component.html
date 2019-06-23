@@ -1,34 +1,43 @@
 <div class="incomes-wrapper">
-  <div class="btn-container">
-    <button mat-mini-fab (click)="addIncome()">
-      <mat-icon aria-label="Agregar un gasto">add</mat-icon>
-    </button>
-  </div>
-  <div class="list-container" *ngIf="incomes">
-    <h1>Ingresos</h1>
-    <h3>Sin confirmar</h3>
-    <div class="lines-container">
-      <div *ngFor="let income of getIncomes(false);" class="line-container" (tap)="swOnTap(income)"
-        (swipeleft)="swipe(income, $event.type)" (swiperight)="swipe(income, $event.type)">
-        <div class="line" [style.margin-left.px]="(income === tappedIncome) ? '-50' : '0'">
-          <span class="date">{{income.date | date:'dd/MM/yyyy'}}</span>
-          <span class="amount">$&nbsp;{{income.amount | number:'0.2-2'}}</span>
+    <div class="btn-container">
+        <button mat-mini-fab (click)="addIncome()">
+            <mat-icon aria-label="Agregar un gasto">add</mat-icon>
+        </button>
+    </div>
+    <div class="list-container" *ngIf="incomes">
+        <h1>Ingresos</h1>
+        <div class="title-line">
+            <h3 class="title">Sin confirmar</h3>
+            <div class="title-separator"></div>
         </div>
-        <div class="swipe-icons" *ngIf="income === tappedIncome"></div>
+        <div class="lines-container">
+            <div *ngFor="let income of getIncomes(false);" class="line-container" (tap)="swOnTap(income)"
+                (swipeleft)="swipe(income, $event.type)" (swiperight)="swipe(income, $event.type)">
+                <div class="line" [style.margin-left.px]="(income === tappedIncome) ? '-50' : '0'">
+                    <span class="date">{{income.date | date:'dd/MM/yyyy'}}</span>
+                    <span class="amount">$&nbsp;{{income.amount | number:'0.2-2'}}</span>
+                </div>
+                <div class="swipe-icons" *ngIf="income === tappedIncome"></div>
 
-      </div>
+            </div>
+        </div>
+        <div class="list-container" *ngIf="incomes">
+            <div class="title-line">
+                <h3 class="title">Confirmados</h3>
+                <div class="title-separator"></div>
+            </div>
+            <div class="lines-container">
+                <div *ngFor="let income of getIncomes(true);" class="line-container" (tap)="swOnTap(income)"
+                    (swipeleft)="swipe(income, $event.type)" (swiperight)="swipe(income, $event.type)">
+                    <div class="line" [style.margin-left.px]="(income === tappedIncome) ? '-50' : '0'">
+                        <span class="date">{{income.date | date:'dd/MM/yyyy'}}</span>
+                        <span class="amount">$&nbsp;{{income.amount | number:'0.2-2'}}</span>
+                    </div>
+                    <div class="swipe-icons" *ngIf="income === tappedIncome"></div>
 
-      <h3>Confirmados</h3>
-      <div *ngFor="let income of getIncomes(true);" class="line-container" (tap)="swOnTap(income)"
-      (swipeleft)="swipe(income, $event.type)" (swiperight)="swipe(income, $event.type)">
-      <div class="line" [style.margin-left.px]="(income === tappedIncome) ? '-50' : '0'">
-        <span class="descrip">{{income.fecha | date:'dd/mm/yyyy'}}</span>
-        <span class="amount">$&nbsp;{{income.amount | number:'0.2-2'}}</span>
-      </div>
-      <div class="swipe-icons" *ngIf="income === tappedIncome"></div>
+                </div>
 
+            </div>
+        </div>
     </div>
-
-    </div>
-  </div>
 </div>

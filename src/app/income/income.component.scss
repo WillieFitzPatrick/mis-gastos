@@ -1,17 +1,102 @@
+
+:root {
+  --swipe-button-width: 2px;
+}
+
+.incomes-wrapper {
+  position: relative;
+  padding: 15px 15px;
+}
+
+.btn-container {
+  position: absolute;
+  right: 20px;
+  float: right;
+}
 .income-form {
     min-width: 150px;
     max-width: 400px;
     width: 100%;
   }
   
-  .income-full-width {
-    width: 100%;
-  }
-  .btn-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 20px;
-    padding-top: 20px;
+.income-full-width {
+  width: 100%;
+}
 
+.list-container {
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+}
+.title-line {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.title-separator{
+  flex: 1 0 auto;
+  border-top: 1px solid #bbbcbd;
+}
+
+.lines-container {
+  width: 100%;
+  padding-left: 8px;
+}
+
+.line-container {
+  width: 100%;
+  display: flex;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid #f1f5f8;
+  padding-bottom: 2px;
+  margin-bottom: 4px;
+  width: 100%;
+  position: relative;
+  height: 40px;
+}
+
+.line-container:last-child {
+  .line {
+    border-bottom: none;
+    padding-bottom: 7px;
+    margin-bottom: none;
   }
+}
+
+.amount {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.date {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+
+.swipe-item {
+    width: 100%;
+    min-width: 100%;
+}
+.swipe-icons {
+    position: absolute;
+    background: red;
+    width: 50px;
+    height: 40px;
+    right: 0;
+    // margin-top: -9px;
+}
+  
