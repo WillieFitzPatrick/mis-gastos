@@ -12,6 +12,7 @@ import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 export class IncomeComponent implements OnInit {
 
     incomes: IIncome[];
+    tappedIncome: IIncome = null;
 
     constructor(private ds: DataService,
         private bottomSheet: MatBottomSheet) { }
@@ -24,6 +25,18 @@ export class IncomeComponent implements OnInit {
             this.incomes = data;
         });
     }
+
+    getIncomes( confirmado: boolean ) {
+        let _incomes = [];
+        this.incomes.forEach( e => {
+            if ( e.confirmed === confirmado ) {
+                _incomes.push( e );
+            }
+        });
+        return _incomes;        
+    }
+
+
     addIncome() {
         const ref = this.bottomSheet.open(IncomeFormComponent);
         ref.afterDismissed().subscribe(() => {
@@ -32,7 +45,27 @@ export class IncomeComponent implements OnInit {
 
         )
     }
+    swOnTap( income ) {
+        // console.log( this.el)
+        // console.log( this.el.nativeElement)
+        console.log( "swOnTap")
+        console.log( income)
+        this.tappedIncome = (!this.tappedIncome) ? income : null;
+        //this.r2.setAttribute( this.el.nativeElement, "style", `--swipe-button-width: 150px`);
+    }
+
+    swipe( exp, eventType, el) {
+        // console.log( eventType)
+        // console.log( el._element.nativeElement)
+        // if ( eventType === "swipeleft") {
+        //     this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 150px`);
+        // } else {
+        //     this.r2.setAttribute(el._element.nativeElement, "style", `--swipe-button-width: 0`);
+        // }
+    }      
 }
+
+
 
 
 @Component({

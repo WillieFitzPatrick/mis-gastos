@@ -9,7 +9,7 @@ import { ISummary, ISummaryDay } from '../models';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  selectedTab: number = 2;
+  selectedTab: number = 1;
   summary: ISummary;
   days: ISummaryDay[] = []
   slideIndex: number = 0;
