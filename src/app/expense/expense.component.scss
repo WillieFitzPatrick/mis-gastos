@@ -5,7 +5,7 @@
 
 .expenses-wrapper {
   position: relative;
-  padding: 15px 15px;
+  padding: 15px 8px;
 }
 
 .btn-container {
@@ -27,6 +27,11 @@
   padding: 15px 0;
   display: flex;
   flex-direction: column;
+  h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+  }
 }
 
 .date-container{
@@ -95,7 +100,8 @@
   font-weight: 400;
 }
 .descrip {
-  font-size: 12px;
+  font-size: 14px;
+  opacity: 0.6;
 }
 
 

@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+
 //Routing Module
 import { AppRoutingModule } from './app-routing.module';
 
@@ -18,6 +19,8 @@ import { MatNativeDateModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatExpansionModule} from '@angular/material/expansion';
+import { CdkAccordionModule} from '@angular/cdk/accordion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DateAdapter, NativeDateAdapter } from '@angular/material/core';
 
@@ -26,7 +29,7 @@ import { HomeComponent } from './home/home.component';
 import { SummaryComponent } from './summary/summary.component';
 import { IncomeComponent } from './income/income.component';
 import { TestComponent } from './test/test.component';
-import { ExpenseComponent, ExpenseFormComponent , ExpenseLineComponent} from './expense/expense.component';
+import { ExpenseComponent, ExpenseFormComponent } from './expense/expense.component';
 import { IncomeFormComponent } from './income/income.component';
 import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
 
@@ -38,7 +41,6 @@ import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
     IncomeComponent,
     ExpenseComponent,
     ExpenseFormComponent,
-    ExpenseLineComponent,
     TestComponent,
     IncomeFormComponent,
   ],
@@ -60,11 +62,14 @@ import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
     MatBottomSheetModule,
     MatProgressSpinnerModule,
     AppRoutingModule,
-    ITooltipModule
+    ITooltipModule,
+    MatExpansionModule,
+    CdkAccordionModule
+    
   
   ],
   providers: [{provide: DateAdapter, useClass: NativeDateAdapter}],
-  entryComponents: [ExpenseFormComponent, ExpenseLineComponent, IncomeFormComponent],
+  entryComponents: [ExpenseFormComponent, IncomeFormComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
