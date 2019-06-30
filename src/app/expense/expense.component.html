@@ -23,7 +23,7 @@
                         <div class="line" [style.margin-left.px]="(expense === tappedExpense) ? '-50' : '0'">
                             <span
                                 class="category">{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}
-                                <span class="descrip"> - {{expense.descrip}}</span>
+                                <span class="descrip" *ngif="expense.descrip"> - {{expense.descrip}}</span>
                             </span>
                             <span class="amount">$&nbsp;{{expense.amount | number:'0.2-2'}}</span>
                         </div>
