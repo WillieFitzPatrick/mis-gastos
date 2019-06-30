@@ -7,8 +7,8 @@
 
     <div class="list-container" *ngIf="expenses">
         <h1>Gastos</h1>
-        <mat-accordion style="margin-top: 10px;" [multi]="false"  *ngFor="let date of getDates()">
-            <mat-expansion-panel>
+        <mat-accordion  multi="false">
+            <mat-expansion-panel style="margin-top: 10px;"*ngFor="let date of getDates()">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         {{date | date: 'dd/MM/yyyy'}}

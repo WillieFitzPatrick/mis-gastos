@@ -20,7 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatExpansionModule} from '@angular/material/expansion';
-import { CdkAccordionModule} from '@angular/cdk/accordion';
+// import { CdkAccordionModule} from '@angular/cdk/accordion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DateAdapter, NativeDateAdapter } from '@angular/material/core';
 
@@ -64,7 +64,7 @@ import { ITooltipModule } from './directives/i-tooltip/i-tooltip.module';
     AppRoutingModule,
     ITooltipModule,
     MatExpansionModule,
-    CdkAccordionModule
+    // CdkAccordionModule
     
   
   ],
