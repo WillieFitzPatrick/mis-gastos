@@ -4,6 +4,11 @@ import { MatBottomSheet, MatBottomSheetRef } from '@angular/material';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { IExpense, ICategory } from '../models';
 
+export interface IExpenseDayTotal {
+    date: string;
+    total: number;
+}
+
 @Component({
     selector: 'app-expense',
     templateUrl: './expense.component.html',
@@ -34,12 +39,22 @@ export class ExpenseComponent implements OnInit {
             let _date = new Date( e.date );
             _dates.push( _date.toISOString().substring(0,10) );
         });
-        return [...new Set(_dates)];
-        // let _uniDates= [...new Set(_dates)];
-        // _uniDates.forEach( e => {
-        //     // let _date = new Date( e.date );
-        //     _dates.push( _date.toISOString().substring(0,10) );
-        // });
+        //return [...new Set(_dates)];
+
+        let _uniDates = [...new Set(_dates)];
+        let _retDatesTotal: IExpenseDayTotal[] = [];
+        
+        _uniDates.forEach( _date => {
+            let _total: number = 0;
+            this.expenses.map( exp => {
+                let tmpDate = new Date( exp.date );
+                if (tmpDate.toISOString().substring(0,10) === _date) {
+                    _total = _total + exp.amount;
+                }
+            })
+            _retDatesTotal.push( {date: _date, total: _total});
+        });
+        return _retDatesTotal;
     }
     getExpenses( date ) {
         let _expenses = [];

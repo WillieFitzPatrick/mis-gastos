@@ -8,22 +8,21 @@
     <div class="list-container" *ngIf="expenses">
         <h1>Gastos</h1>
         <mat-accordion  multi="false">
-            <mat-expansion-panel style="margin-top: 10px;"*ngFor="let date of getDates()">
+            <mat-expansion-panel style="margin-top: 10px;"*ngFor="let dateTotal of getDates()">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        {{date | date: 'dd/MM/yyyy'}}
+                        {{dateTotal.date | date: 'dd/MM/yyyy'}}
                     </mat-panel-title>
                     <mat-panel-description>
-                        $100
+                        $ {{dateTotal.total | number:'0.2-2'}}
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="lines-container">
-                    <div *ngFor="let expense of getExpenses(date);" class="line-container" (tap)="swOnTap(expense)"
+                    <div *ngFor="let expense of getExpenses(dateTotal.date);" class="line-container" (tap)="swOnTap(expense)"
                         (swipeleft)="swipe(expense, $event.type)" (swiperight)="swipe(expense, $event.type)">
                         <div class="line" [style.margin-left.px]="(expense === tappedExpense) ? '-50' : '0'">
-                            <span
-                                class="category">{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}
-                                <span class="descrip" *ngif="expense.descrip"> - {{expense.descrip}}</span>
+                            <span class="category">{{(expense.category.descrip) ? expense.category.descrip : "Sin categoria"}}
+                                <span class="descrip" *ngIf="expense.descrip"> - {{expense.descrip}}</span>
                             </span>
                             <span class="amount">$&nbsp;{{expense.amount | number:'0.2-2'}}</span>
                         </div>
